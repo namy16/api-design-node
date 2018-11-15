@@ -1,6 +1,6 @@
-var _ = require('lodash');
+import _ from "lodash";
 
-var config = {
+let config = {
   dev: 'development',
   test: 'testing',
   prod: 'production',
@@ -15,7 +15,7 @@ var config = {
 process.env.NODE_ENV = process.env.NODE_ENV || config.dev;
 config.env = process.env.NODE_ENV;
 
-var envConfig;
+let envConfig;
 // require could error out if
 // the file don't exist so lets try this statement
 // and fallback to an empty object if it does error out
@@ -31,4 +31,5 @@ try {
 // merge the two config files together
 // the envConfig file will overwrite properties
 // on the config object
-module.exports = _.merge(config, envConfig);
+let mergedConfig  = _.merge(config, envConfig);
+export default mergedConfig;

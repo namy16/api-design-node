@@ -3,11 +3,13 @@
 // on the root of a folder in node
 // you can just require that folder and node will
 // automatically require the index.js on the root
+import app from './server/server';
 
 // setup config first before anything by requiring it
-var config = require('./server/config/config');
-var app = require('./server/server');
-var logger = require('./server/util/logger');
+import config from './server/config/config';
+// var app = require('./server/server');
+
+let logger = require('./server/util/logger');
 
 app.listen(config.port);
 logger.log('listening on http://localhost:' + config.port);

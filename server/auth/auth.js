@@ -1,11 +1,12 @@
-var jwt = require('jsonwebtoken');
-var expressJwt = require('express-jwt');
-var config = require('../config/config');
-var checkToken = expressJwt({ secret: config.secrets.jwt });
-var User = require('../api/user/userModel');
+import jwt from "jsonwebtoken";
+import expressJwt from "express-jwt";
+import config from "../config/config";
+let checkToken = expressJwt({ secret: config.secrets.jwt });
+// import User from "../api/user/userModel";
 
-exports.decodeToken = function() {
-  return function(req, res, next) {
+
+export const decodeToken = () => {
+  return (req, res, next) =>{
     // make it optional to place token on query string
     // if it is, place it on the headers where it should be
     // so checkToken can see it. See follow the 'Bearer 034930493' format
@@ -21,7 +22,7 @@ exports.decodeToken = function() {
   };
 };
 
-exports.getFreshUser = function() {
+export const getFreshUser = ()=> {
   return function(req, res, next) {
     // we'll have access to req.user here
     // because we'll use decodeToken in before
